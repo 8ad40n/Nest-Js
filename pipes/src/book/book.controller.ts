@@ -1,0 +1,19 @@
+import { Body, Controller, Get, Param, ParseIntPipe, Post } from '@nestjs/common';
+import { BookDto } from './book.dto';
+import { BookPipe } from './book.pipe';
+
+@Controller('book')
+export class BookController {
+    @Get("/:id")
+    findBookById(@Param("id", ParseIntPipe) id:number): string
+    {
+        console.log(id, typeof(id));
+        return "This will return Book by id";
+    }
+
+    @Post("/add")
+    addBook(@Body(new BookPipe()) book:BookDto): string
+    {
+        return "Add book";
+    }
+}

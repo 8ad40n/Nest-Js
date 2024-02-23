@@ -1,4 +1,4 @@
-import { Body, Controller, Get, Param, ParseIntPipe, Post } from '@nestjs/common';
+import { Body, Controller, Get, Param, ParseIntPipe, Post, ValidationPipe } from '@nestjs/common';
 import { BookDto } from './book.dto';
 import { BookPipe } from './book.pipe';
 
@@ -11,6 +11,15 @@ export class BookController {
         return "This will return Book by id";
     }
 
+    // Validation Pipe
+    @Post("/pipe")
+    pipeValid(@Body(new ValidationPipe()) book:BookDto): string
+    {
+        return "Add book";
+    }
+
+
+    // custom pipes
     @Post("/add")
     addBook(@Body(new BookPipe()) book:BookDto): string
     {

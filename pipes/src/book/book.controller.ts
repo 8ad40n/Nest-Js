@@ -11,13 +11,13 @@ export class BookController {
         return "This will return Book by id";
     }
 
+    // @UsePipes(ValidationPipe)
     // Validation Pipe
     @Post("/pipe")
     pipeValid(@Body(new ValidationPipe()) book:BookDto): string
     {
         return "Add book";
     }
-
 
     // custom pipes
     @Post("/add")

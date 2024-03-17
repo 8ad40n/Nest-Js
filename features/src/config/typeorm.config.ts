@@ -10,4 +10,5 @@ export const typeOrmConfig: TypeOrmModuleOptions = {
     database: 'Features',
     entities: [User],
     synchronize: true,
+    logging: true,
 };

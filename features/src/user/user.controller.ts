@@ -1,4 +1,6 @@
-import { Controller, Post } from '@nestjs/common';
+import { Body, Controller, Post, ValidationPipe } from '@nestjs/common';
+import { UserRegisterRequestDto } from './dto/user-register.req.dto';
+import { User } from './user.entity';
 import { UserService } from './user.service';
 
 @Controller('user')
@@ -7,8 +9,8 @@ export class UserController {
     constructor(private userService: UserService){}
 
     @Post("/register")
-    doUserRegistration()
+    async doUserRegistration(@Body(new ValidationPipe) userRegister: UserRegisterRequestDto) : Promise<User>
     {
-
+        return await this.userService.doUserRegistration(userRegister);
     }
 }
